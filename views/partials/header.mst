@@ -1,0 +1,26 @@
+<html>
+<head>
+
+    {{#pageTitle}}
+        <title>{{pageTitle}}</title>
+    {{/pageTitle}}
+
+    {{^pageTitle}}
+        <title>{{h.detaultPagesTitle}}</title>
+    {{/pageTitle}}
+
+</head>
+
+<body>
+<h1>Cabeçalho</h1>
+<hr/>
+
+
+<ul>
+    {{#h.menu}}
+        <li><a href="{{slug}}"> {{name}}</li>
+    {{/h.menu}}
+</ul>
+   
+<hr/>
+</body>

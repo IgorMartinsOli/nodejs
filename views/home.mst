@@ -1,0 +1,39 @@
+{{>header}}
+
+<h1>Pagina inicial</h1>
+
+<p>Nome: {{nome}}</p>
+
+{{#mostrar}}
+    <p>Nome: {{nome}}   - Idade: {{idade}}</p>
+{{/mostrar}}
+
+<ul>
+{{#alunos}}
+    <li>{{aluno}}   - Notas: {{nota}}</li>
+{{/alunos}}
+</ul>
+
+<ul>
+{{#interesses}}
+    <li>{{.}}</li>
+{{/interesses}}
+</ul>
+
+{{! verificar se o array está vazio e exibe o conteudo}}
+{{^interesses}}
+    <p>Não tem interesse...</p>
+{{/interesses}}
+
+{{{conteudo}}}
+<hr/>
+
+{{#h.rodape}}
+       <a href="{{ano}}"> {{empresa}}
+{{/h.rodape}}
+
+<ul>
+    {{#h.tecnologias}}
+        <li><a href="{{slug}}"> {{tecnologia}}</li>
+    {{/h.tecnologias}}
+</ul>

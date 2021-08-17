@@ -1,0 +1,34 @@
+users
+
+- _id
+- name
+- email
+- stat
+- passwordHash
+- token
+
+
+states
+
+- _id
+- name
+
+
+
+categorias
+
+- _id
+- name
+- slug
+
+
+
+ads
+
+- _id
+- _idUser
+- images[{ulr, defalt:true}]
+- category
+- price
+- description
+- dateCreated
