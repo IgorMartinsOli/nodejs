@@ -1,4 +1,3 @@
-//ref mongoose --> modelSchema --> conectar e consultar 
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
@@ -12,8 +11,8 @@ const modelSchema = new mongoose.Schema({
 
 const modelName = 'User';
 
-if(mongoose.connect && mongoose.models[modelName]){
-    module.exports = mongoose.connect.models[modelName];
+if(mongoose.connection && mongoose.connection.models[modelName]){
+    module.exports = mongoose.connection.models[modelName];
 }else{
     module.exports = mongoose.model(modelName, modelSchema);
 }

@@ -1,7 +1,7 @@
  const {checkSchema} = require('express-validator');
 
  module.exports = {
-     signup:checkSchema({
+     signup: checkSchema({
         name:{
             notEmpty:true,
             trim:true,
@@ -21,5 +21,18 @@
             notEmpty:true,
             errorMessage:'Estado não preenchido'
         }
+     }),
+
+     signin: checkSchema({
+        email:{
+            isEmail:true,
+            normalizeEmail:true,
+            errorMessage:'Email invalido'
+        },
+
+        password:{
+            isLength:{options:{min:4}},
+            errorMessage:'Senha precisa de pelo menos 4 caracteres'
+        },
      })
- }
+ };

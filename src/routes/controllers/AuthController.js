@@ -7,7 +7,38 @@ const State = require('../../models/State');
 
 module.exports = {
     signin: async (req, res) => {
+        const erros = validatorResult(req);
 
+        if(!erros.isEmpty()){
+            res.json({
+                error: erros.mapped()
+            });
+            return;
+        }
+
+        const data = matcheData(req);
+
+        //verifica no banco email correspondente
+        const user = await User.findOne({ email: data.email });
+        if(!user){
+            res.json({ error: 'Email/senha nao corresponde'});
+            return;
+        }
+
+        //validar senha correspondente
+        const match = await bcrypt.compare(data.passaword, user.passawordHash);
+        if(!match){
+            res.json({ error: 'Email/senha nao corresponde'});
+            return;
+        }
+
+        const payload = (Date.now() + Math.random()).toString();
+        const token = await bcrypt.hash(payload, 10);
+
+        user.token = token;
+        await user.save();
+
+        res.json({token, email: data.email});
     },
     signup: async (req, res) => {
         const erros = validationResult(req);
@@ -75,11 +106,10 @@ module.exports = {
 
         res.json({token});
 
-
         res.json({ tudoCerto: true, data });
 
     },
     editAction: async (req, res) => {
-
+        
     }
 };

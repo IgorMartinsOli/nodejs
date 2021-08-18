@@ -8,12 +8,6 @@ const AuthController = require('./controllers/AuthController');
 const UserController = require('./controllers/UserController');
 const AdsController = require('./controllers/AdsController');
 
-
-router.get('/', (req, res) =>{
-    res.send("Funfando");
-    console.log("funfando");
-});
-
 router.get('/ping', (req, res) =>{
     res.json({pong: true});
 });
@@ -21,13 +15,19 @@ router.get('/ping', (req, res) =>{
 //obter estados
 router.get('/states', UserController.getStats);
 
+router.get('/', (req, res) =>{
+    res.send("Funfando");
+    console.log("funfando");
+});
+
+
 //rota para login/logoff
-router.post('/user/singin', AuthController.signin);
-router.post('/user/signup',AuthValidator.signup, AuthController.signup);
+router.post('/user/singin', AuthValidator.signin, AuthController.signin);
+router.post('/user/signup', AuthValidator.signup, AuthController.signup);
 
 //obter informações do usuario
 router.get('/user/me', Auth.private, UserController.info);
-router.put('/user/me', Auth.private, AuthController.editAction); //*
+router.put('/user/me', UserController.editAction, Auth.private, AuthController.editAction); //*
 
 //obter categorias
 router.get('/categories', AdsController.getCategories);

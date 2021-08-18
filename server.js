@@ -1,11 +1,7 @@
-//const app = require("./app");
-
-//conexão com bd
-const moongose = require('mongoose');
+require('dotenv').config({path: 'variables.env'});
 
 const express = require("express");
-//setar arquivo de config variaveis
-require('dotenv').config({path: 'variables.env'});
+const moongose = require('mongoose');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
 
@@ -25,27 +21,9 @@ server.use(express.urlencoded({extended: true}));
 //fileUpload => biblioteca 
 server.use(fileUpload());
 
-
-/*server.use('/', apiRouters);*/
-
-//futuro: implementar pasta/diretorio publico
-/*
-//para testar servico rota ping... depois excluir quando as rotas estarem implementadas
-
-
-//setar rotas
-*/
-
+server.use(express.static('public'));
+server.use('/', apiRouters);
 
 server.listen(process.env.PORT, () =>{
     console.log(`servidor rodando na porta ${process.env.PORT}`);
 });
-
-
-
-/*
-app.set('port', process.env.PORT || 7778);
-
-const server = app.listen(app.get('port'), () =>{
-    console.log("Servidor rodando na porta " + server.address().port);
-});*/
