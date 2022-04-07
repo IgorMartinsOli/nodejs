@@ -1,15 +1,15 @@
 require('dotenv').config({path: 'variables.env'});
 
 const express = require("express");
-const moongose = require('mongoose');
+const mongoose = require('mongoose');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
 
 const apiRouters = require('./src/routes/routers');
 
-moongose.connect(process.env.DATABASE, {useNewUrlParser: true, useUnifiedTopology: true});
-moongose.Promise = global.Promise;
-moongose.connection.on ('error', (error)=>{
+mongoose.connect(process.env.DATABASE, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.Promise = global.Promise;
+mongoose.connection.on ('error', (error)=>{
     console.error ("Deu erro:" + error.message);
 });
 

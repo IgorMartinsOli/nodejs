@@ -4,7 +4,7 @@ mongoose.Promise = global.Promise;
 
 const modelSchema = new mongoose.Schema({
     name: String,
-    slyg: String
+    slug: String
 });
 
 const modelName = 'Category';

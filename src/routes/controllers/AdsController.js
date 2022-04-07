@@ -15,12 +15,11 @@ const addImage = async(buffer) =>{
     return newName;
 }
 
-
-
 module.exports = {
     addAction: async(req, res) => {
         //recebe anuncios, categorias, usuario => Validar e Organizar dados
         let {title, price, priceneg, toke, cat, desc} = req.body;
+
         const user = await User.findOne({ token: token }).exec();
 
         if(!title || !cat || !desc){
